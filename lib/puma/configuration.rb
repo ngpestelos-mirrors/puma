@@ -290,6 +290,7 @@ module Puma
       end
 
       load unless @loaded
+      raise "fork_worker and mold_worker cannot be used together" if @_options[:fork_worker] && @_options[:mold_worker]
       run_mode_hooks
       set_conditional_default_options
       @_options.finalize_values
